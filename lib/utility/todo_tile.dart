@@ -28,16 +28,20 @@ class ToDoTile extends StatelessWidget {
             backgroundColor: Colors.red,
           ),
         ]),
-
-        startActionPane: ActionPane(motion: StretchMotion(), children: [
-          SlidableAction(onPressed: shareFunction,
-          icon: Icons.share,
-          backgroundColor: Colors.blue,)
-        ],),
+        startActionPane: ActionPane(
+          motion: StretchMotion(),
+          children: [
+            SlidableAction(
+              onPressed: shareFunction,
+              icon: Icons.share,
+              backgroundColor: Colors.blue,
+            )
+          ],
+        ),
         child: Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-              color: Colors.teal, borderRadius: BorderRadius.circular(12)),
+              color: Colors.black12, borderRadius: BorderRadius.circular(12)),
           child: Row(
             children: [
               Checkbox(

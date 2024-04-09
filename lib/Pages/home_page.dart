@@ -46,17 +46,22 @@ class _HomepageState extends State<Homepage> {
     setState(() {
       db.toDoList[index][1] = !db.toDoList[index][1];
     });
-   db.updateDataBase();
+    db.updateDataBase();
   }
 
   //save new task
   void saveNewtask() {
-    setState(() {
-      db.toDoList.add([_controller.text, false]);
-      _controller.clear();
-    });
-    Navigator.of(context).pop();
-    db.updateDataBase();
+    if (_controller.toString().isEmpty) {
+      setState(() {
+        db.toDoList.add([_controller.text, false]);
+        _controller.clear();
+      });
+      Navigator.of(context).pop();
+      db.updateDataBase();
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("TODO cannot be empty")));
+    }
   }
 
   //create new task
@@ -86,16 +91,19 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
-        title: const Text("TO DO"),
+        title: const Text(
+          "TO DO",
+        ),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.teal,
+        // backgroundColor: Colors.black,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNewTask,
         child: const Icon(Icons.add),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: ListView.builder(
         itemCount: db.toDoList.length,
