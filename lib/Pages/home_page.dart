@@ -51,7 +51,7 @@ class _HomepageState extends State<Homepage> {
 
   //save new task
   void saveNewtask() {
-    if (_controller.toString().isEmpty) {
+    if (_controller.toString().isNotEmpty) {
       setState(() {
         db.toDoList.add([_controller.text, false]);
         _controller.clear();
